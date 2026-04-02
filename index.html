@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hadiah 🌹</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: url('https://files.catbox.moe/ht86xc.jpg') no-repeat center;
+    background-size: cover;
+
+    font-family: Arial;
+}
+
+/* Tombol */
+.btn {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: none;
+    background: radial-gradient(circle, #ff4d6d, #ff1744);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255,0,80,0.6);
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Box video */
+.popup-box {
+    width: 260px;
+    overflow: hidden;
+}
+
+/* VIDEO (udah di-crop putihnya) */
+.popup-box video {
+    width: 120%;
+    transform: translateX(-10%) scale(1.2);
+    border-radius: 20px;
+}
+
+/* Close */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 25px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<button class="btn" onclick="openVideo()">hadiah🌹</button>
+
+<div class="popup" id="popup">
+    <div class="close" onclick="closeVideo()">✖</div>
+
+    <div class="popup-box">
+        <video id="video" controls>
+            <source src="https://files.catbox.moe/jhvgmt.mp4" type="video/mp4">
+        </video>
+    </div>
+</div>
+
+<script>
+function openVideo() {
+    let popup = document.getElementById("popup");
+    let video = document.getElementById("video");
+
+    popup.style.display = "flex";
+    video.currentTime = 0;
+    video.play().catch(() => {});
+}
+
+function closeVideo() {
+    let popup = document.getElementById("popup");
+    let video = document.getElementById("video");
+
+    video.pause();
+    video.currentTime = 0;
+    popup.style.display = "none";
+}
+</script>
+
+</body>
+</html>
