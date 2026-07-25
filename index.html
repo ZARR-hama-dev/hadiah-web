@@ -3,104 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hadiah 🌹</title>
+<title>Merbabu Arts Fest</title>
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: url('https://files.catbox.moe/ht86xc.jpg') no-repeat center;
-    background-size: cover;
-
-    font-family: Arial;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
-/* Tombol */
-.btn {
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    border: none;
-    background: radial-gradient(circle, #ff4d6d, #ff1744);
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(255,0,80,0.6);
+body{
+background:url("https://files.catbox.moe/4qe09s.jpg") center center/cover fixed;
+color:#fff;
+overflow-x:hidden;
 }
 
-/* Popup */
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(5px);
+z-index:-1;
 }
 
-/* Box video */
-.popup-box {
-    width: 260px;
-    overflow: hidden;
+.container{
+max-width:1200px;
+margin:auto;
+padding:25px;
 }
 
-/* VIDEO (udah di-crop putihnya) */
-.popup-box video {
-    width: 120%;
-    transform: translateX(-10%) scale(1.2);
-    border-radius: 20px;
+.logo{
+text-align:center;
+font-size:42px;
+font-weight:bold;
+margin-bottom:20px;
+text-shadow:0 0 10px #000;
 }
 
-/* Close */
-.close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 25px;
-    color: white;
-    cursor: pointer;
+.title{
+text-align:center;
+font-size:32px;
+font-weight:bold;
+margin-bottom:25px;
+}
+
+.main{
+display:flex;
+justify-content:center;
+margin-bottom:40px;
+}
+
+.main video{
+width:340px;
+height:600px;
+border-radius:20px;
+border:8px solid white;
+background:#000;
+object-fit:cover;
+box-shadow:0 0 30px rgba(0,0,0,.6);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(12px);
+padding:10px;
+border-radius:18px;
+}
+
+.card video{
+width:100%;
+height:380px;
+border-radius:15px;
+object-fit:cover;
+background:#000;
+}
+
+.footer{
+text-align:center;
+font-size:28px;
+font-weight:bold;
+padding:40px 0;
+text-shadow:0 0 10px #000;
+}
+
+@media(max-width:600px){
+
+.logo{
+font-size:32px;
+}
+
+.title{
+font-size:25px;
+}
+
+.main video{
+width:90%;
+height:520px;
+}
+
+.card video{
+height:300px;
+}
+
 }
 </style>
-</head>
 
+</head>
 <body>
 
-<button class="btn" onclick="openVideo()">hadiah🌹</button>
+<div class="container">
 
-<div class="popup" id="popup">
-    <div class="close" onclick="closeVideo()">✖</div>
+<div class="logo">
+MERBABU ART FEST
+</div>
 
-    <div class="popup-box">
-        <video id="video" controls>
-            <source src="https://files.catbox.moe/jhvgmt.mp4" type="video/mp4">
-        </video>
-    </div>
+<div class="title">
+Available Video
+</div>
+
+<div class="main">
+<video autoplay muted loop playsinline controls>
+<source src="https://files.catbox.moe/9wuvgo.mp4">
+</video>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="footer">
+Amankan Ticketmu SEKARANG!!
+</div>
+
 </div>
 
 <script>
-function openVideo() {
-    let popup = document.getElementById("popup");
-    let video = document.getElementById("video");
 
-    popup.style.display = "flex";
-    video.currentTime = 0;
-    video.play().catch(() => {});
-}
+const videos=[
 
-function closeVideo() {
-    let popup = document.getElementById("popup");
-    let video = document.getElementById("video");
+"https://files.catbox.moe/9wuvgo.mp4",
+"https://files.catbox.moe/guo4vb.mp4",
+"https://files.catbox.moe/wodes6.mp4",
+"https://files.catbox.moe/1ho0jz.mp4",
+"https://files.catbox.moe/u28xgu.mp4",
+"https://files.catbox.moe/5yy1ks.mp4",
 
-    video.pause();
-    video.currentTime = 0;
-    popup.style.display = "none";
-}
+"https://files.catbox.moe/9wuvgo.mp4",
+"https://files.catbox.moe/guo4vb.mp4",
+"https://files.catbox.moe/wodes6.mp4",
+"https://files.catbox.moe/1ho0jz.mp4"
+
+];
+
+const grid=document.getElementById("grid");
+
+videos.forEach(src=>{
+
+const card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+<video autoplay muted loop playsinline controls>
+<source src="${src}">
+</video>
+`;
+
+grid.appendChild(card);
+
+});
+
 </script>
 
 </body>
